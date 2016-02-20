@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-// An iterator-like interface.
+// Iterator is an iterator-like interface.
 // A type that satisfies tqdm.iterators.Iterator can be used by routines
 // in this package.
 type Iterator interface {
@@ -21,4 +21,5 @@ type Iterator interface {
 	Forward() (item interface{}, err error)
 }
 
+// ErrStopIteration represents iterator no longer produce items.
 var ErrStopIteration = errors.New("tqdm.iterators.Iterator: stopped iterations")

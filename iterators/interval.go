@@ -18,9 +18,8 @@ func (r *rng) Plan() int {
 	}
 	if r.first < r.last {
 		return (r.last - r.first)
-	} else {
-		return (r.first - r.last)
 	}
+	return (r.first - r.last)
 }
 
 func (r *rng) Remaining() bool {
@@ -29,9 +28,8 @@ func (r *rng) Remaining() bool {
 	}
 	if r.first < r.last {
 		return (r.first + r.count) < r.last
-	} else {
-		return r.last < (r.first - r.count)
 	}
+	return r.last < (r.first - r.count)
 }
 
 func (r *rng) Forward() (interface{}, error) {
@@ -42,7 +40,6 @@ func (r *rng) Forward() (interface{}, error) {
 	r.count++
 	if r.first < r.last {
 		return (r.first + c), nil
-	} else {
-		return (r.first - c), nil
 	}
+	return (r.first - c), nil
 }
