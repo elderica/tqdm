@@ -5,7 +5,7 @@ import (
 )
 
 func toArray(it Iterator) {
-	a := make([]int, 0)
+	var a []int
 	for it.Remaining() {
 		v, _ := it.Forward()
 		a = append(a, v.(int))
