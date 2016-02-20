@@ -39,20 +39,20 @@ var (
 )
 
 /*
- FormatProgressBar generates representation of progress indicator with progress bar shows
- statistics of iterations.
+FormatProgressBar generates representation of progress indicator with progress bar shows
+statistics of iterations.
 
- Input
+Input
 
- plan: planned number of iterations.
+plan: planned number of iterations.
 
- finished: number of finished iterations.
+finished: number of finished iterations.
 
- elapesd: time elapsed from start to now.
+elapesd: time elapsed from start to now.
 
- Output
+Output
 
- representation of progress indicator with progress bar.
+representation of progress indicator with progress bar.
 */
 func FormatProgressBar(plan uint, finished uint, elapsed time.Duration) string {
 	left := plan - finished
@@ -74,19 +74,19 @@ func FormatProgressBar(plan uint, finished uint, elapsed time.Duration) string {
 }
 
 /*
- FormatSpeedMeter generates representation of progress indicator shows speed of iterations.
+FormatSpeedMeter generates representation of progress indicator shows speed of iterations.
 
- Input
+Input
 
- plan: ignored
+plan: ignored
 
- finished: number of finished iterations.
+finished: number of finished iterations.
 
- elapesd: time elapsed from start to now.
+elapesd: time elapsed from start to now.
 
- Output
+Output
 
- representation of progress indicator shows speed of iterations.
+representation of progress indicator shows speed of iterations.
 */
 func FormatSpeedMeter(plan uint, finished uint, elapsed time.Duration) string {
 	rate := fmt.Sprintf("%5.2f", float64(finished)/elapsed.Seconds())
