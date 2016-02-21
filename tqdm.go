@@ -3,6 +3,7 @@ package tqdm
 import (
 	"github.com/sbwhitecap/tqdm/internal"
 	"github.com/sbwhitecap/tqdm/iterators"
+	"io"
 	"os"
 	"time"
 )
@@ -79,8 +80,11 @@ func With(it iterators.Iterator, description string, block func(v interface{}) (
 			render(prefix +
 				format(uint(plan), uint(finished), time.Since(start)))
 		}
+		io.WriteString(RedirectTo, "\n")
 	} else {
 		render("")
+		// Jump over whitespaces.
+		io.WriteString(RedirectTo, "\r")
 	}
 
 	return nil
