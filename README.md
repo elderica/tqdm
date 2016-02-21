@@ -1,4 +1,4 @@
-# [tqdm](https://github.com/sbwhitecap/tqdm)
+# [tqdm](https://github.com/sbwhitecap/tqdm) [![GoDoc](https://godoc.org/github.com/sbwhitecap/tqdm?status.svg)](https://godoc.org/github.com/sbwhitecap/tqdm)
 
 Attach a progress indicator quickly on your program.
 
@@ -27,9 +27,7 @@ The default output is sent to `os.Stderr`. Here is screenshot:
 ![|#######---| 7/10  70% [elapsed: 7.098091s left: 3s,  0.99 iters/sec]](http://i.imgur.com/OueeCbX.gif)
 
 ## Usage
-See godoc.
-[github.com/sbwhitecap/tqdm](https://godoc.org/github.com/sbwhitecap/tqdm )
-[github.com/sbwhitecap/tqdm/iterators](https://godoc.org/github.com/sbwhitecap/tqdm/iterators)
+See [tqdm's godoc](https://godoc.org/github.com/sbwhitecap/tqdm) and [tqdm/iterators's godoc](https://godoc.org/github.com/sbwhitecap/tqdm/iterators).
 
 ## Install
 ```bash
