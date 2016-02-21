@@ -24,7 +24,7 @@ func main() {
 
 The default output is sent to `os.Stderr`. Here is screenshot:
 
-![|#######---| 7/10  70% [elapsed: 7.098091s left: 3s,  0.99 iters/sec]](http://i.imgur.com/lfXJ9uE.gif)
+![|#######---| 7/10  70% [elapsed: 7.098091s left: 3s,  0.99 iters/sec]](http://i.imgur.com/OueeCbX.gif)
 
 ## Usage
 See godoc.
