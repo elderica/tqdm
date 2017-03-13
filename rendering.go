@@ -9,24 +9,30 @@ import (
 	"time"
 )
 
-func makeRenderer(w io.Writer) func(string) error {
-	lastwrotelen := 0
+type renderer struct {
+	w io.Writer
+	lastwrotelen int
+}
 
-	return func(s string) error {
-		n := int(math.Max(0, float64(lastwrotelen-len(s))))
-		spaces := strings.Repeat(" ", n)
-		s2 := "\r" + s + spaces
+func (r *renderer) render(s string) error {
+		n := int(math.Max(0, float64(r.lastwrotelen-len(s))))
+		s2 := fmt.Sprintf("\r%s%s", s, strings.Repeat(" ", n))
 
-		_, err := io.WriteString(w, s2)
-
-		if f, ok := w.(*os.File); ok {
+		_, err := io.WriteString(r.w, s2)
+		if err != nil {
+			return err
+		}
+		if f, ok := r.w.(*os.File); ok {
 			f.Sync()
 		}
 
-		lastwrotelen = len(s)
+		r.lastwrotelen = len(s)
 
-		return err
-	}
+		return nil
+}
+
+func makeRenderer(w io.Writer) func(string) error {
+	return (&renderer{w: w}).render
 }
 
 var (
