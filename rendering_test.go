@@ -65,8 +65,8 @@ func TestFormatSpeedMeter(t *testing.T) {
 	}
 }
 
-var formattimetests = []struct{
-	h, m, s int
+var formattimetests = []struct {
+	h, m, s  int
 	expected string
 }{
 	{20, 34, 18, "20:34:18"},

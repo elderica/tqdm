@@ -36,8 +36,8 @@ func makeRenderer(w io.Writer) func(string) error {
 }
 
 var (
-	blockFinished = "#"
-	blockLeft     = "-"
+	symbolFinished = "#"
+	symbolLeft     = "-"
 	saucerSize    = 10
 	lParen        = "|"
 	rParen        = "|"
@@ -49,9 +49,9 @@ func formatProgressBar(plan uint, finished uint, elapsed time.Duration) string {
 	saucer := make([]byte, 0, len(lParen)+saucerSize+len(rParen))
 	saucer = append(saucer, lParen...)
 	bflen := int(float64(finished) / float64(plan) * float64(saucerSize))
-	saucer = append(saucer, strings.Repeat(blockFinished, bflen)...)
+	saucer = append(saucer, strings.Repeat(symbolFinished, bflen)...)
 	bllen := saucerSize - bflen
-	saucer = append(saucer, strings.Repeat(blockLeft, bllen)...)
+	saucer = append(saucer, strings.Repeat(symbolLeft, bllen)...)
 	saucer = append(saucer, rParen...)
 
 	percentage := fmt.Sprintf("%3d%%", int(float64(finished)/float64(plan)*100.0))
