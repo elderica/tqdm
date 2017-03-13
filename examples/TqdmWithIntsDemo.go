@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	tqdm.With(Ints([]int{1, 2, 3}), "ints", func(v interface{}) bool {
+	tqdm.With(Ints([]int{1, 2, 3}), "ints", func(v interface{}) (brk bool) {
 		time.Sleep(1 * time.Second)
-		return false
+		return
 	})
 }

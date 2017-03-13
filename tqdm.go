@@ -7,13 +7,13 @@ import (
 	"time"
 )
 
-// Configuration variables. User can set these variables for customization.
+// Configuration variables. Users can set these variables for customization.
 var (
-	// RedirectTo was set io.Writer to output the progress indicator.
-	RedirectTo = os.Stderr
+	// RedirectTo is where to output the progress indicator.
+	RedirectTo io.Writer = os.Stderr
 
 	// If LeaveProgressIndicator is false, tqdm deletes its traces
-	// from screen after it has finished iterating over all elements.
+	// from RedirectTo after it has finished iterating over all elements.
 	LeaveProgressIndicator = true
 
 	// If less than RerenderingMinimumIntervalOfTime seconds or
