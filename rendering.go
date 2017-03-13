@@ -59,11 +59,21 @@ func formatProgressBar(plan uint, finished uint, elapsed time.Duration) string {
 	rate := fmt.Sprintf("%5.2f", float64(finished)/elapsed.Seconds())
 
 	return fmt.Sprintf("%s %d/%d %s [elapsed: %s left: %s, %s iters/sec]",
-		string(saucer), finished, plan, percentage, elapsed, remaining, rate)
+		string(saucer), finished, plan, percentage, formatTime(elapsed), formatTime(remaining), rate)
 }
 
 func formatSpeedMeter(plan uint, finished uint, elapsed time.Duration) string {
 	rate := fmt.Sprintf("%5.2f", float64(finished)/elapsed.Seconds())
 
-	return fmt.Sprintf("%d [elapsed: %s, %s iters/sec]", finished, elapsed, rate)
+	return fmt.Sprintf("%d [elapsed: %s, %s iters/sec]", finished, formatTime(elapsed), rate)
+}
+
+func formatTime(d time.Duration) string {
+	s := (d % time.Minute) / time.Second
+	m := (d % time.Hour) / time.Minute
+	h := d / time.Hour
+	if h == 0 {
+		return fmt.Sprintf("%02d:%02d", m, s)
+	}
+	return fmt.Sprintf("%02d:%02d:%02d", h, m, s)
 }
