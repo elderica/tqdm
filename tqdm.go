@@ -1,7 +1,6 @@
 package tqdm
 
 import (
-	"github.com/sbwhitecap/tqdm/internal"
 	"github.com/sbwhitecap/tqdm/iterators"
 	"io"
 	"os"
@@ -33,7 +32,7 @@ var (
 // With calls 'block' callback every iteration. Callback should return false
 // except you want to "break" loop.
 func With(it iterators.Iterator, description string, block func(v interface{}) (brk bool)) error {
-	render := internal.MakeRendererFunc(RedirectTo)
+	render := makeRenderer(RedirectTo)
 
 	prefix := ""
 	if description != "" {
@@ -41,9 +40,9 @@ func With(it iterators.Iterator, description string, block func(v interface{}) (
 	}
 
 	plan := it.Plan()
-	format := internal.FormatProgressBar
+	format := formatProgressBar
 	if plan < 0 {
-		format = internal.FormatSpeedMeter
+		format = formatSpeedMeter
 	}
 
 	start := time.Now()

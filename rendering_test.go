@@ -1,4 +1,4 @@
-package render
+package tqdm
 
 import (
 	"os"
@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-func ExampleMakeRendererFunc() {
-	renderer := MakeRendererFunc(os.Stdout)
+func ExampleMakeRenderer() {
+	renderer := makeRenderer(os.Stdout)
 	renderer("Hello, World!")
 	// Output:
 	// Hello, World!
@@ -35,7 +35,7 @@ var formatprogressbartests = []string{
 
 func TestFormatProgressBar(t *testing.T) {
 	for idx, in := range formatindicatortests {
-		s := FormatProgressBar(in.plan, in.finished, in.elapsed)
+		s := formatProgressBar(in.plan, in.finished, in.elapsed)
 		if s != formatprogressbartests[idx] {
 			t.Errorf("FormatProgressBar(%d, %d, %s)\ngot  %q,\nwant %q",
 				in.plan, in.finished, in.elapsed, s, formatprogressbartests[idx])
@@ -46,7 +46,7 @@ func TestFormatProgressBar(t *testing.T) {
 func BenchmarkFormatProgressBar(b *testing.B) {
 	in := formatindicatortests[0]
 	for i := 0; i < b.N; i++ {
-		_ = FormatProgressBar(in.plan, in.finished, in.elapsed)
+		_ = formatProgressBar(in.plan, in.finished, in.elapsed)
 	}
 }
 
@@ -57,7 +57,7 @@ var formatspeedmetertests = []string{
 
 func TestFormatSpeedMeter(t *testing.T) {
 	for idx, in := range formatindicatortests {
-		s := FormatSpeedMeter(in.plan, in.finished, in.elapsed)
+		s := formatSpeedMeter(in.plan, in.finished, in.elapsed)
 		if s != formatspeedmetertests[idx] {
 			t.Errorf("FormatSpeedmeter(%d, %s)\ngot  %q,\nwant %q",
 				in.finished, in.elapsed, s, formatspeedmetertests[idx])
