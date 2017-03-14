@@ -1,20 +1,19 @@
 package tqdm
 
 import (
-	"github.com/sbwhitecap/tqdm/internal"
 	"github.com/sbwhitecap/tqdm/iterators"
 	"io"
 	"os"
 	"time"
 )
 
-// Configuration variables. User can set these variables for customization.
+// Configuration variables. Users can set these variables for customization.
 var (
-	// RedirectTo was set io.Writer to output the progress indicator.
-	RedirectTo = os.Stderr
+	// RedirectTo is where to output the progress indicator.
+	RedirectTo io.Writer = os.Stderr
 
 	// If LeaveProgressIndicator is false, tqdm deletes its traces
-	// from screen after it has finished iterating over all elements.
+	// from RedirectTo after it has finished iterating over all elements.
 	LeaveProgressIndicator = true
 
 	// If less than RerenderingMinimumIntervalOfTime seconds or
@@ -33,7 +32,7 @@ var (
 // With calls 'block' callback every iteration. Callback should return false
 // except you want to "break" loop.
 func With(it iterators.Iterator, description string, block func(v interface{}) (brk bool)) error {
-	render := internal.MakeRendererFunc(RedirectTo)
+	render := makeRenderer(RedirectTo)
 
 	prefix := ""
 	if description != "" {
@@ -41,9 +40,9 @@ func With(it iterators.Iterator, description string, block func(v interface{}) (
 	}
 
 	plan := it.Plan()
-	format := internal.FormatProgressBar
+	format := formatProgressBar
 	if plan < 0 {
-		format = internal.FormatSpeedMeter
+		format = formatSpeedMeter
 	}
 
 	start := time.Now()

@@ -18,10 +18,10 @@ func main() {
 		keys = append(keys, k)
 	}
 
-	tqdm.With(Strings(keys), "iterating map", func(v interface{}) bool {
+	tqdm.With(Strings(keys), "iterating map", func(v interface{}) (brk bool) {
 		time.Sleep(500 * time.Millisecond)
 		k := v.(string)
 		_ = m[k]
-		return false
+		return
 	})
 }
