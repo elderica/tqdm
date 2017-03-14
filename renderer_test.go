@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func ExampleMakeRenderer() {
+func ExamplemakeRenderer() {
 	renderer := makeRenderer(os.Stdout)
 	renderer("Hello, World!")
 	// Output:
