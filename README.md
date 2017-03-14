@@ -24,7 +24,7 @@ func main() {
 
 The default output is sent to `os.Stderr`. Here is screenshot:
 
-![|#######---| 7/10  70% [elapsed: 00:07 left: 00:03,  1.00 iters/sec]](https://i.gyazo.com/7041431c5e66ddc8bfdd4ebc4bf833e5.png)
+![|#######---| 7/10  70% [elapsed: 00:07 left: 00:03,  1.00 iters/sec]](http://i.imgur.com/1a21isA.gif)
 
 ## Usage
 See [tqdm's godoc](https://godoc.org/github.com/sbwhitecap/tqdm) and [tqdm/iterators's godoc](https://godoc.org/github.com/sbwhitecap/tqdm/iterators).
