@@ -19,8 +19,10 @@ func (is *float64Slice) Remaining() bool {
 }
 
 func (is *float64Slice) Forward() (interface{}, error) {
+	if len(is.contents) == is.idx {
+		return 0, ErrStopIteration
+	}
 	item := is.contents[is.idx]
 	is.idx++
-
 	return item, nil
 }

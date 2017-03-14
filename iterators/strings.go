@@ -19,8 +19,10 @@ func (is *stringSlice) Remaining() bool {
 }
 
 func (is *stringSlice) Forward() (interface{}, error) {
+	if len(is.contents) == is.idx {
+		return 0, ErrStopIteration
+	}
 	item := is.contents[is.idx]
 	is.idx++
-
 	return item, nil
 }
