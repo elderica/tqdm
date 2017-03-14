@@ -14,13 +14,13 @@ var (
 
 	// If LeaveProgressIndicator is false, tqdm deletes its traces
 	// from RedirectTo after it has finished iterating over all elements.
-	LeaveProgressIndicator = true
+	LeaveProgressIndicator bool = true
 
-	// If less than RerenderingMinimumIntervalOfTime seconds or
-	// RerenderingMinimumIntervalsOfIteration iterations have passed
+	// If less than MinimumIntervalOfTime seconds or
+	// less than MinimumTimesOfIteration iterations have passed
 	// since last progress indicator update, it is not updated again.
-	RerenderingMinimumIntervalOfTime       = 500 * time.Millisecond
-	RerenderingMinimumIntervalsOfIteration = 1
+	MinimumIntervalOfTime   time.Duration = 500 * time.Millisecond
+	MinimumTimesOfIteration uint          = 1
 )
 
 // With does iterations, render a progress indicator
@@ -63,9 +63,9 @@ func With(it iterators.Iterator, description string, block func(v interface{}) (
 		b = block(v)
 		finished++
 
-		if finished-lastfinished >= RerenderingMinimumIntervalsOfIteration {
+		if uint(finished-lastfinished) >= MinimumTimesOfIteration {
 			current := time.Now()
-			if current.Sub(lastprint) >= RerenderingMinimumIntervalOfTime {
+			if current.Sub(lastprint) >= MinimumIntervalOfTime {
 				render(prefix +
 					format(uint(plan), uint(finished), current.Sub(start)))
 				lastfinished = finished
